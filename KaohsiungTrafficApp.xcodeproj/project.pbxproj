@@ -9,21 +9,39 @@
 /* Begin PBXBuildFile section */
 		D6097AF827B4C25D0001E311 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097AF727B4C25D0001E311 /* AppDelegate.swift */; };
 		D6097AFA27B4C25D0001E311 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097AF927B4C25D0001E311 /* SceneDelegate.swift */; };
-		D6097AFC27B4C25D0001E311 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097AFB27B4C25D0001E311 /* ViewController.swift */; };
 		D6097AFF27B4C25D0001E311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6097AFD27B4C25D0001E311 /* Main.storyboard */; };
 		D6097B0127B4C2620001E311 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6097B0027B4C2620001E311 /* Assets.xcassets */; };
 		D6097B0427B4C2620001E311 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6097B0227B4C2620001E311 /* LaunchScreen.storyboard */; };
+		D6097B1827B505B60001E311 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097B1727B505B60001E311 /* LogInViewController.swift */; };
+		D6097B1A27B508740001E311 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097B1927B508740001E311 /* InitViewController.swift */; };
+		D6097B1C27B5148A0001E311 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097B1B27B5148A0001E311 /* AccountTableViewController.swift */; };
+		D6097B1E27B5161B0001E311 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097B1D27B5161B0001E311 /* HomeCollectionViewController.swift */; };
+		D6097B2027B517230001E311 /* HomeItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097B1F27B517230001E311 /* HomeItemCollectionViewCell.swift */; };
+		D6097B2227B51B930001E311 /* Home+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6097B2127B51B930001E311 /* Home+Enum.swift */; };
+		D698946A27B5FD82006860C2 /* WeatherCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698946927B5FD82006860C2 /* WeatherCollectionReusableView.swift */; };
+		D698946D27B656AB006860C2 /* WeatherFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698946C27B656AB006860C2 /* WeatherFetcher.swift */; };
+		D698946F27B656EE006860C2 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698946E27B656EE006860C2 /* Weather.swift */; };
+		D698947327B7E798006860C2 /* HomeCVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698947227B7E798006860C2 /* HomeCVC+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D6097AF427B4C25D0001E311 /* KaohsiungTrafficApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KaohsiungTrafficApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6097AF727B4C25D0001E311 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6097AF927B4C25D0001E311 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D6097AFB27B4C25D0001E311 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D6097AFE27B4C25D0001E311 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D6097B0027B4C2620001E311 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6097B0327B4C2620001E311 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D6097B0527B4C2620001E311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6097B1727B505B60001E311 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		D6097B1927B508740001E311 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
+		D6097B1B27B5148A0001E311 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		D6097B1D27B5161B0001E311 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
+		D6097B1F27B517230001E311 /* HomeItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		D6097B2127B51B930001E311 /* Home+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+Enum.swift"; sourceTree = "<group>"; };
+		D698946927B5FD82006860C2 /* WeatherCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionReusableView.swift; sourceTree = "<group>"; };
+		D698946C27B656AB006860C2 /* WeatherFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFetcher.swift; sourceTree = "<group>"; };
+		D698946E27B656EE006860C2 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		D698947227B7E798006860C2 /* HomeCVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeCVC+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +76,54 @@
 			children = (
 				D6097AF727B4C25D0001E311 /* AppDelegate.swift */,
 				D6097AF927B4C25D0001E311 /* SceneDelegate.swift */,
-				D6097AFB27B4C25D0001E311 /* ViewController.swift */,
 				D6097AFD27B4C25D0001E311 /* Main.storyboard */,
+				D698947827B80871006860C2 /* Models */,
+				D698947927B8089A006860C2 /* Views */,
+				D698947A27B808BE006860C2 /* Controllers */,
+				D698947227B7E798006860C2 /* HomeCVC+Extension.swift */,
+				D698946C27B656AB006860C2 /* WeatherFetcher.swift */,
+				D6097B2127B51B930001E311 /* Home+Enum.swift */,
 				D6097B0027B4C2620001E311 /* Assets.xcassets */,
 				D6097B0227B4C2620001E311 /* LaunchScreen.storyboard */,
 				D6097B0527B4C2620001E311 /* Info.plist */,
 			);
 			path = KaohsiungTrafficApp;
+			sourceTree = "<group>";
+		};
+		D698946B27B64A06006860C2 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				D6097B1727B505B60001E311 /* LogInViewController.swift */,
+				D6097B1B27B5148A0001E311 /* AccountTableViewController.swift */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		D698947827B80871006860C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D698946E27B656EE006860C2 /* Weather.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D698947927B8089A006860C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D698946927B5FD82006860C2 /* WeatherCollectionReusableView.swift */,
+				D6097B1F27B517230001E311 /* HomeItemCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D698947A27B808BE006860C2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D698946B27B64A06006860C2 /* LogIn */,
+				D6097B1927B508740001E311 /* InitViewController.swift */,
+				D6097B1D27B5161B0001E311 /* HomeCollectionViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +197,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6097AFC27B4C25D0001E311 /* ViewController.swift in Sources */,
+				D698946F27B656EE006860C2 /* Weather.swift in Sources */,
+				D6097B1827B505B60001E311 /* LogInViewController.swift in Sources */,
+				D698946A27B5FD82006860C2 /* WeatherCollectionReusableView.swift in Sources */,
+				D698947327B7E798006860C2 /* HomeCVC+Extension.swift in Sources */,
+				D6097B1C27B5148A0001E311 /* AccountTableViewController.swift in Sources */,
+				D6097B2027B517230001E311 /* HomeItemCollectionViewCell.swift in Sources */,
 				D6097AF827B4C25D0001E311 /* AppDelegate.swift in Sources */,
+				D6097B2227B51B930001E311 /* Home+Enum.swift in Sources */,
+				D698946D27B656AB006860C2 /* WeatherFetcher.swift in Sources */,
+				D6097B1E27B5161B0001E311 /* HomeCollectionViewController.swift in Sources */,
+				D6097B1A27B508740001E311 /* InitViewController.swift in Sources */,
 				D6097AFA27B4C25D0001E311 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
