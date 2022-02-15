@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import MapKit
+
 extension HomeCollectionViewController{
     
     //抓資料
-    func fetchKaohsiungWeatherInfoData(){
-        WeatherFetcher.shared.fetchKaohsiungWeatherData { result in
+    func fetchWeatherInfoData(){
+        WeatherFetcher.shared.fetchWeatherData { result in
             switch result{
             case .success(let weatherResponse):
                 DispatchQueue.main.async {
@@ -20,32 +20,13 @@ extension HomeCollectionViewController{
                 }
             case .failure(_):
                 DispatchQueue.main.async {
-                    self.displayError()
+                    self.displayError {
+                        self.fetchWeatherInfoData()
+                    }
                 }
             }
         }
     }
-    func displayError(){
-        let alert = UIAlertController(title: "下載失敗", message: "天無法正常下載,請檢查網路狀態", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "重新整理", style: .default, handler: { _ in
-            self.fetchKaohsiungWeatherInfoData()
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
-    }
-//    func fetchLocationWeatherInfoData(latitude:CLLocationDegrees,longitude:CLLocationDegrees){
-//        WeatherFetcher.shared.fetchLocationWeatherData(latitude: latitude, longitude: longitude) { result in
-//            switch result{
-//            case .success(let weatherResponse):
-//                DispatchQueue.main.async {
-//                    self.weatherData = weatherResponse
-//                    self.collectionView.reloadData()
-//                }
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
     
     //配置Cell
     func configure(_ cell:HomeItemCollectionViewCell,forRowAt indexPath:IndexPath){

@@ -30,7 +30,7 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        fetchKaohsiungWeatherInfoData()
+        fetchWeatherInfoData()
     }
     
     //選擇交通工具
