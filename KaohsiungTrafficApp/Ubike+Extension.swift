@@ -21,29 +21,34 @@ extension UbikeStationListViewController:UITableViewDataSource,UITableViewDelega
     //cell顯示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reusableIdentifier, for: indexPath) as? UbikeStationItemTableViewCell else{return UITableViewCell()}
+        
         guard DataSortedByDistance.isEmpty == false else {return cell}
+        
         guard searchContent.isEmpty == true else {
             configure(cell, forRowAt: indexPath, data: searchContent)
             return cell
         }
+        
         configure(cell, forRowAt: indexPath, data: DataSortedByDistance)
+        
         return cell
     }
     //section Header
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let ubikeData = ubikeData else {return nil}
+        guard let ubikeData = ubikeApi else {return nil}
         return "最後更新時間：" + ubikeData.data.updatedAt
     }
     
     //點擊cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mapView.removeOverlay(mapView.overlays[0])
+        
         guard searchContent.isEmpty == true else{
-            let itemData = searchContent[indexPath.row]
-            mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:Double(itemData.lat)!, longitude: Double(itemData.lng)!), latitudinalMeters: 500, longitudinalMeters: 500)
+            createLinePath(data: searchContent, forRowAt: indexPath)
             return 
         }
-        let itemData = DataSortedByDistance[indexPath.row]
-        mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:Double(itemData.lat)!, longitude: Double(itemData.lng)!), latitudinalMeters: 500, longitudinalMeters: 500)
+        createLinePath(data: DataSortedByDistance, forRowAt: indexPath)
+
     }
     
     func configure(_ cell:UbikeStationItemTableViewCell,forRowAt indexPath:IndexPath,data:[UbikeApi.Data.RetVal]){
@@ -55,11 +60,24 @@ extension UbikeStationListViewController:UITableViewDataSource,UITableViewDelega
         cell.arLabel.text = itemData.ar
         cell.totLabel.text = "總車位：\(itemData.tot)個"
         cell.sbiLabel.text = "剩餘車輛：\(itemData.sbi)輛"
-        cell.distanceLabel.text = "距離您" + convertDistance(lat1: userLocation.latitude, lng1: userLocation.longitude, lat2: Double(itemData.lat)!, lng2: Double(itemData.lng)!)
+        cell.distanceLabel.text = convertDistance(lat1: userLocation.latitude, lng1: userLocation.longitude, lat2: Double(itemData.lat)!, lng2: Double(itemData.lng)!)
+        
         //百分比圓餅圖
         let percentage = CGFloat(Float(itemData.sbi)!/Float(itemData.tot)!)
         cell.drawPercentageView(percentage: percentage)
+        cell.percentageView.layer.insertSublayer(cell.whiteLayer, at: 0)
+        cell.percentageView.layer.insertSublayer(cell.orangeLayer, at: 0)
         cell.percentageLabel.text = "\(Int(percentage*100))%"
+    }
+    
+    //畫出路線
+    func createLinePath(data:[UbikeApi.Data.RetVal],forRowAt indexPath:IndexPath){
+        let itemData = data[indexPath.row]
+        let userLocation = mapView.userLocation.coordinate
+        let distance = getDistance(lat1: userLocation.latitude, lng1: userLocation.longitude, lat2: Double(itemData.lat)!, lng2: Double(itemData.lng)!)
+        createLinePath(mapView, sourceLocation: userLocation, destinationLocation: CLLocationCoordinate2D(latitude: Double(itemData.lat)!, longitude: Double(itemData.lng)!)) { rect in
+            self.mapView.setRegion(MKCoordinateRegion(center: MKCoordinateRegion(rect).center, latitudinalMeters: distance, longitudinalMeters: distance), animated: true)
+        }
     }
 }
 //MKMapViewDelegate,CLLocationManagerDelegate
@@ -73,66 +91,28 @@ extension UbikeStationListViewController:MKMapViewDelegate,CLLocationManagerDele
         locationManager.startUpdatingLocation()
         mapView.showsUserLocation = true
     }
-    
     //把所有的點加入到地圖
     func addUbikeStation(){
         guard DataSortedByDistance.isEmpty == false else{return}
         var annotations = [MKPointAnnotation]()
+        
         for index in 0..<DataSortedByDistance.count{
             let stationData = DataSortedByDistance[index]
             let station = MKPointAnnotation()
+            
             station.coordinate = CLLocationCoordinate2D(latitude: Double(stationData.lat)!, longitude: Double(stationData.lng)!)
+            
             station.title = stationData.sna
             annotations.append(station)
             mapView.addAnnotations(annotations)
         }
     }
-    //更新使用者座標
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation = locations[0]
-        mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), latitudinalMeters: 500, longitudinalMeters:500)
-        
-    }
-    //轉換公尺公里
-    func convertDistance(lat1:Double,lng1:Double,lat2:Double,lng2:Double)->String{
-        let distance = getDistance(lat1: lat1, lng1: lng1, lat2: lat2, lng2: lng2)
-        let walkingTime = round(distance/60)
-        var distanceString:String
-        var walkingTimeString:String
-        switch distance{
-        case 0..<1000:
-            distanceString = String(format: "%.1f", distance) + "公尺"
-            walkingTimeString = "(約步行\(String(format: "%.0f", walkingTime))分鐘)"
-        default:
-            distanceString = String(format: "%.1f", distance/1000) + "公里"
-            if walkingTime < 60{
-                walkingTimeString = "(約步行\(String(format: "%.0f", walkingTime))分鐘)"
-            }else{
-                walkingTimeString = "(約步行\(Int(walkingTime/60))小時\(Int(walkingTime)%60)分鐘)"
-            }
-        }
-        return distanceString + walkingTimeString
-    }
-    //根據兩點經緯度計算兩點距離
-    func getDistance(lat1:Double,lng1:Double,lat2:Double,lng2:Double)->Double{
-            let earthRadius:Double = 6378137.0
-            
-            let radLat1:Double = self.radian(degree: lat1)
-            let radLat2:Double = self.radian(degree: lat2)
-            
-            let radLng1:Double = self.radian(degree: lng1)
-            let radLng2:Double = self.radian(degree: lng2)
-
-            let a:Double = radLat1 - radLat2
-            let b:Double = radLng1 - radLng2
-            
-            var s:Double = 2 * asin(sqrt(pow(sin(a/2), 2) + cos(radLat1) * cos(radLat2) * pow(sin(b/2), 2)))
-            s = s * earthRadius
-            return s
-    }
-    //根據角度計算弧度
-    func radian(degree:Double) -> Double {
-         return degree * Double.pi/180.0
+    //繪製線條
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let rendere = MKPolylineRenderer(overlay: overlay)
+        rendere.lineWidth = 5
+        rendere.strokeColor = .systemBlue
+        return rendere
     }
 }
 

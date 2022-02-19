@@ -17,6 +17,9 @@ class UbikeStationItemTableViewCell: UITableViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var percentageView: UIView!
     @IBOutlet weak var percentageLabel: UILabel!
+    //初始新的CAShaperLayer
+    let orangeLayer = CAShapeLayer()
+    let whiteLayer = CAShapeLayer()
     
     
     func drawPercentageView(percentage:CGFloat){
@@ -24,28 +27,29 @@ class UbikeStationItemTableViewCell: UITableViewCell {
         var startDegree:CGFloat = 270
         let radius:CGFloat = 30
         let center = CGPoint(x: percentageView.bounds.width/2, y: percentageView.bounds.width/2)
-        var color =  UIColor(red: 237/255, green: 186/255, blue: 63/255, alpha: 1)
-        let percentages = [percentage,1-percentage]
+        let color =  UIColor(red: 237/255, green: 186/255, blue: 63/255, alpha: 1)
         
         //繪製圓餅圖
-        for percentage in percentages{
-            let endDegree = startDegree + (360*percentage)
-            let percentagePath = UIBezierPath()
-            percentagePath.move(to: center)
-            percentagePath.addArc(withCenter: center, radius: radius, startAngle: startDegree*degree, endAngle: endDegree*degree, clockwise: true)
+        var endDegree = startDegree + (360*percentage)
+        var percentagePath = UIBezierPath()
+        percentagePath.move(to: center)
+        percentagePath.addArc(withCenter: center, radius: radius, startAngle: startDegree*degree, endAngle: endDegree*degree, clockwise: true)
             
-            let percentageLayer = CAShapeLayer()
-            percentageLayer.path = percentagePath.cgPath
-            percentageLayer.fillColor = color.cgColor
-            percentageLayer.lineWidth = 3
-            percentageLayer.strokeColor = UIColor(red: 237/255, green: 186/255, blue: 63/255, alpha: 1).cgColor
+        orangeLayer.path = percentagePath.cgPath
+        orangeLayer.fillColor = color.cgColor
+        orangeLayer.lineWidth = 3
+        orangeLayer.strokeColor = color.cgColor
             
-            startDegree = endDegree
-            color = .white
-            
-            percentageView.layer.insertSublayer(percentageLayer, at: 0)
-        }
+        startDegree = endDegree
+        
+        endDegree = startDegree + (360*(1-percentage))
+        percentagePath = UIBezierPath()
+        percentagePath.move(to: center)
+        percentagePath.addArc(withCenter: center, radius: radius, startAngle: startDegree*degree, endAngle: endDegree*degree, clockwise: true)
+        whiteLayer.path = percentagePath.cgPath
+        whiteLayer.fillColor = UIColor.white.cgColor
+        whiteLayer.lineWidth = 3
+        whiteLayer.strokeColor = color.cgColor
+        
     }
-    
-    
 }

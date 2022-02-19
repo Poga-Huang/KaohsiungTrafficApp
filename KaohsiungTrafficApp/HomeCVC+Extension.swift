@@ -9,33 +9,22 @@ import UIKit
 
 extension HomeCollectionViewController{
     
-    //抓資料
-    func fetchWeatherInfoData(){
-        WeatherFetcher.shared.fetchWeatherData { result in
-            switch result{
-            case .success(let weatherResponse):
-                DispatchQueue.main.async {
-                    self.weatherData = weatherResponse
-                    self.collectionView.reloadData()
-                }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self.displayError {
-                        self.fetchWeatherInfoData()
-                    }
-                }
-            }
-        }
-    }
+    
     
     //配置Cell
     func configure(_ cell:HomeItemCollectionViewCell,forRowAt indexPath:IndexPath){
+        
         cell.itemButton.configuration?.image = UIImage(named: TransportationItem.allCases[indexPath.row].rawValue)
-        cell.itemButton.configuration?.attributedTitle = AttributedString(TransportationName.allCases[indexPath.row].rawValue)
+        
+        cell.itemButton.configuration?.attributedTitle = AttributedString(TransportationItem.allCases[indexPath.row].rawValue)
+        
         cell.itemButton.configuration?.attributedTitle?.font = UIFont.boldSystemFont(ofSize: 20)
+        
         cell.itemButton.configuration?.imagePlacement = .top
         cell.itemButton.configuration?.imagePadding = 10
+        
         cell.itemButton.configuration?.background.backgroundColor = setCellColor(indexPath: indexPath)
+        
         cell.itemButton.layer.shadowOffset = CGSize(width: 1, height: 1)
         cell.itemButton.layer.shadowOpacity = 1
         cell.itemButton.layer.shadowColor = UIColor.black.cgColor
@@ -67,6 +56,7 @@ extension HomeCollectionViewController{
         reusableView.tempLabel.text = "🌡" + String(format: "%.1f", main.temp-273.15) + "°C"
         reusableView.humidityLabel.text = "💧\(main.humidity)%"
         reusableView.feelsLikeTempLabel.text = String(format: "%.1f", main.feelsLike-273.15) + "°C"
+        
         //判斷id顯示不同的icon
         var imageName:String
         var description:String
@@ -117,6 +107,7 @@ extension HomeCollectionViewController{
             imageName = ""
             description = ""
         }
+        
         reusableView.weatherImageView.image = UIImage(named: imageName)
         reusableView.descriptionLabel.text = description
         

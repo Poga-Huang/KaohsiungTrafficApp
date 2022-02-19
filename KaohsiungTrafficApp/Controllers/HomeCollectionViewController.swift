@@ -33,6 +33,25 @@ class HomeCollectionViewController: UICollectionViewController {
         fetchWeatherInfoData()
     }
     
+    //抓資料
+    func fetchWeatherInfoData(){
+        WeatherFetcher.shared.fetchWeatherData { result in
+            switch result{
+            case .success(let weatherResponse):
+                DispatchQueue.main.async {
+                    self.weatherData = weatherResponse
+                    self.collectionView.reloadData()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.displayError {
+                        self.fetchWeatherInfoData()
+                    }
+                }
+            }
+        }
+    }
+    
     //選擇交通工具
     @IBAction func selectTransportation(_ sender: UIButton) {
         switch sender.tag{

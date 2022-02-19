@@ -11,7 +11,7 @@ import MapKit
 
 class UbikeStationListViewController: UIViewController{
 
-    var ubikeData:UbikeApi?
+    var ubikeApi:UbikeApi?
     var sequence = [Int:Double]()
     var DataSortedByDistance = [UbikeApi.Data.RetVal]()
     var searchContent = [UbikeApi.Data.RetVal]()
@@ -78,10 +78,11 @@ class UbikeStationListViewController: UIViewController{
             switch result{
             case .success(let ubikeResponse):
                 DispatchQueue.main.async {
-                    self.ubikeData = ubikeResponse
+                    self.ubikeApi = ubikeResponse
                     self.dataSortedByDistance()
                     self.addUbikeStation()
                     self.ubikeStationListTableView.reloadData()
+                    self.createLinePath(data: self.DataSortedByDistance, forRowAt:IndexPath(row: 0, section: 0))
                 }
             case .failure(_):
                 DispatchQueue.main.async {
@@ -96,7 +97,7 @@ class UbikeStationListViewController: UIViewController{
     //按距離排順序
     func dataSortedByDistance(){
         //計算距離並加入Dictionary
-        for (index,i) in self.ubikeData!.data.retVal.enumerated(){
+        for (index,i) in self.ubikeApi!.data.retVal.enumerated(){
             let userLocation = self.mapView.userLocation.coordinate
             let distance = self.getDistance(lat1:userLocation.latitude, lng1: userLocation.longitude, lat2:Double(i.lat)!, lng2: Double(i.lng)!)
             self.sequence[index] = distance
@@ -105,9 +106,8 @@ class UbikeStationListViewController: UIViewController{
         let sortedSequence = self.sequence.sorted(by:{$0.value<$1.value})
         //將排序的順序加入到Array中
         for i in sortedSequence{
-            self.DataSortedByDistance.append(self.ubikeData!.data.retVal[i.key])
+            self.DataSortedByDistance.append(self.ubikeApi!.data.retVal[i.key])
         }
     }
-    
 }
 
