@@ -22,6 +22,7 @@ enum MrtListItem:String,CaseIterable{
 }
 enum MrtListItemDescription:String,CaseIterable{
     case routeSettingsDescription = "可設定起點站與終點站得知票價與時間"
-    case stationDescription = "查詢捷運站點地址、周圍資訊...等"
+    case stationDescription = "查詢捷運站點地址、出口資訊...等"
     case systemPhotoDescription = "查看目前最新捷運系統路網圖"
 }
+

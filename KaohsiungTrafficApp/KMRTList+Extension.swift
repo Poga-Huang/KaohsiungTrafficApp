@@ -10,21 +10,40 @@ import MapKit
 
 //UITableViewDataSource
 private let reuseIdentifier = "itemCell"
+
+struct SegueIdentifier{
+    static let systemImage = "showSystemImage"
+    static let searchStation = "showSearchStation"
+}
+
 extension KMRTListViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MrtListItem.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? KmrtItemTableViewCell else{return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? KMRTItemTableViewCell else{return UITableViewCell()}
         let itemName = MrtListItem.allCases[indexPath.row].rawValue
         let itemDescription = MrtListItemDescription.allCases[indexPath.row].rawValue
         cell.itemNameLabel.text = itemName
         cell.itemImageView.image = UIImage(named: itemName)
+        
         cell.descriptionLabel.text = itemDescription
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row{
+        case 0:
+            return
+        case 1:
+            performSegue(withIdentifier: SegueIdentifier.searchStation, sender: nil)
+        case 2:
+            performSegue(withIdentifier: SegueIdentifier.systemImage, sender: nil)
+        default:
+            return
+        }
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
     
 }
 //UIPickerViewDataSource

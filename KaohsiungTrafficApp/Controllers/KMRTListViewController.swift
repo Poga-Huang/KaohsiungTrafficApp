@@ -33,6 +33,13 @@ class KMRTListViewController: UIViewController {
         fetchMRTData()
     
     }
+    //傳遞資料
+    @IBSegueAction func passKmrtLocationData(_ coder: NSCoder) -> KMRTSearchStationTableViewController? {
+        guard let kmrtLocationApi = kmrtLocationApi else {return nil}
+        return KMRTSearchStationTableViewController(coder: coder, kmrtLocationApi: kmrtLocationApi)
+    }
+    
+    
     //搜尋
     @IBAction func searchDestination(_ sender: UIBarButtonItem) {
         pickerBackView.isHidden = false
@@ -90,6 +97,8 @@ class KMRTListViewController: UIViewController {
                     self.showNearStationInfo()
                     //PickerView Reload
                     self.destinationPickerView.reloadComponent(0)
+                    //TableView Selection
+                    self.itemListTableView.allowsSelection = true
                 }
             case .failure(_):
                 DispatchQueue.main.async {

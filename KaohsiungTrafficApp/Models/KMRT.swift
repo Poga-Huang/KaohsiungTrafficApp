@@ -14,31 +14,17 @@ struct KmrtLocationApi:Codable{
         struct Fields:Codable{
             var category:String
             var stationNumber:String
+            var address:String
+            var exitCount:Int
             var stationCHName:String
             var stationENName:String
+            var transfer:String?
             var latitude:Double
             var longitude:Double
-        }
-    }
-}
-
-struct KmrtLiveBoardApi:Codable{
-    var records:[Records]
-    struct Records:Codable{
-        var TripHeadSign:String
-        var EstimateTime:Int
-        var StationName:stationName
-        struct stationName:Codable{
-            var name:String
-            
-            enum CodingKeys:String,CodingKey{
-                case name = "zh_tw"
-            }
-            
-            init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                self.name = try container.decode(String.self, forKey: .name)
-            }
+            var nearExit:[String]?
+            var exitNumber:[String]?
+            var exitLatitude:[Double]?
+            var exitLongitude:[Double]?
         }
     }
 }
