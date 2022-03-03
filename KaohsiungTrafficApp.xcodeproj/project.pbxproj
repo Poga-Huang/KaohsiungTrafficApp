@@ -30,6 +30,8 @@
 		D698948527B9F28A006860C2 /* UbikeStationItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698948427B9F28A006860C2 /* UbikeStationItemTableViewCell.swift */; };
 		D698948727B9F7C8006860C2 /* UbikeStationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698948627B9F7C8006860C2 /* UbikeStationListViewController.swift */; };
 		D698948927BA294A006860C2 /* Ubike+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698948827BA294A006860C2 /* Ubike+Extension.swift */; };
+		D6A2410627CF303A000827FD /* KMRTRouteSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2410527CF303A000827FD /* KMRTRouteSetViewController.swift */; };
+		D6A2410827CF57FF000827FD /* KmrtLiveBoardFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2410727CF57FF000827FD /* KmrtLiveBoardFetcher.swift */; };
 		D6B5CEFF27C372050004251C /* KMRTStationItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B5CEFE27C372050004251C /* KMRTStationItemTableViewCell.swift */; };
 		D6B5CF0127C379420004251C /* KMRTStationItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B5CF0027C379420004251C /* KMRTStationItemDetailViewController.swift */; };
 		D6F15EF027BB973B0009E97C /* KMRTListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F15EEF27BB973B0009E97C /* KMRTListViewController.swift */; };
@@ -67,6 +69,8 @@
 		D698948427B9F28A006860C2 /* UbikeStationItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbikeStationItemTableViewCell.swift; sourceTree = "<group>"; };
 		D698948627B9F7C8006860C2 /* UbikeStationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbikeStationListViewController.swift; sourceTree = "<group>"; };
 		D698948827BA294A006860C2 /* Ubike+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ubike+Extension.swift"; sourceTree = "<group>"; };
+		D6A2410527CF303A000827FD /* KMRTRouteSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMRTRouteSetViewController.swift; sourceTree = "<group>"; };
+		D6A2410727CF57FF000827FD /* KmrtLiveBoardFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmrtLiveBoardFetcher.swift; sourceTree = "<group>"; };
 		D6B5CEFE27C372050004251C /* KMRTStationItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMRTStationItemTableViewCell.swift; sourceTree = "<group>"; };
 		D6B5CF0027C379420004251C /* KMRTStationItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMRTStationItemDetailViewController.swift; sourceTree = "<group>"; };
 		D6F15EEF27BB973B0009E97C /* KMRTListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMRTListViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 				D6097AF727B4C25D0001E311 /* AppDelegate.swift */,
 				D6097AF927B4C25D0001E311 /* SceneDelegate.swift */,
 				D6097AFD27B4C25D0001E311 /* Main.storyboard */,
+				D6A2410527CF303A000827FD /* KMRTRouteSetViewController.swift */,
+				D6A2410727CF57FF000827FD /* KmrtLiveBoardFetcher.swift */,
 				D698947827B80871006860C2 /* Models */,
 				D698947927B8089A006860C2 /* Views */,
 				D698947A27B808BE006860C2 /* Controllers */,
@@ -257,6 +263,7 @@
 				D6F15F0427C129A30009E97C /* KMRTSearchStationTableViewController.swift in Sources */,
 				D698946A27B5FD82006860C2 /* WeatherCollectionReusableView.swift in Sources */,
 				D6F15F0027C0BD500009E97C /* KMRTList+Extension.swift in Sources */,
+				D6A2410827CF57FF000827FD /* KmrtLiveBoardFetcher.swift in Sources */,
 				D698947327B7E798006860C2 /* HomeCVC+Extension.swift in Sources */,
 				D698947F27B93091006860C2 /* Ubike.swift in Sources */,
 				D698948127B933E9006860C2 /* UbikeFetcher.swift in Sources */,
@@ -274,6 +281,7 @@
 				D646703C27C7B06F0055B988 /* KMRTStation+Extension.swift in Sources */,
 				D6097B1A27B508740001E311 /* InitViewController.swift in Sources */,
 				D6F15EF027BB973B0009E97C /* KMRTListViewController.swift in Sources */,
+				D6A2410627CF303A000827FD /* KMRTRouteSetViewController.swift in Sources */,
 				D698948527B9F28A006860C2 /* UbikeStationItemTableViewCell.swift in Sources */,
 				D6097AFA27B4C25D0001E311 /* SceneDelegate.swift in Sources */,
 				D6F15EF227BB99840009E97C /* KMRT.swift in Sources */,

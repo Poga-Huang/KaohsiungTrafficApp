@@ -9,6 +9,13 @@ import UIKit
 import MapKit
 
 extension UIViewController{
+    func makeCornerRadiusAndBorder(view:UIView){
+        view.layer.cornerRadius = view.bounds.width/2
+        view.layer.borderWidth = 3
+        view.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    
     //下載失敗提示
     func displayError(completion:@escaping ()->()){
         let alert = UIAlertController(title: "下載失敗", message: "無法正常下載,請檢查網路狀態", preferredStyle: .alert)

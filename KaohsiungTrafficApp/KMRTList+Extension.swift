@@ -12,6 +12,7 @@ import MapKit
 private let reuseIdentifier = "itemCell"
 
 struct SegueIdentifier{
+    static let setRoute = "ShowRouteSetting"
     static let systemImage = "showSystemImage"
     static let searchStation = "showSearchStation"
 }
@@ -34,7 +35,7 @@ extension KMRTListViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
         case 0:
-            return
+            performSegue(withIdentifier: SegueIdentifier.setRoute, sender: nil)
         case 1:
             performSegue(withIdentifier: SegueIdentifier.searchStation, sender: nil)
         case 2:
